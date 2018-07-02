@@ -1,0 +1,29 @@
+
+void quickSort(int a[],int left,int right)
+{
+    if (left > right) return;
+    int
+    i, j, t, temp;
+    i = left;
+    j = right;
+    temp = a[left];  //temp为基准数，暂定将最左边的第一个元素设置为基准
+    while (i != j) {
+        while (a[j] >= temp && i < j) //顺序很重要！！！必须先从右边开始找
+            j--;
+        while (a[i] <= temp && i < j) //再从左边开始找
+            i++;
+        if (i < j)       //交换两个数
+        {
+            t = a[i];
+            a[i] = a[j];
+            a[j] = t;
+        }
+    }
+    a[left] = a[i];      //最终将基准数归位,将基准数调到该数组的大致中间位置
+    a[i] = temp;
+    quickSort(a, left, i - 1); //继续递归处理左边的
+    quickSort(a, i + 1, right);//继续递归处理右边的
+}
+//从序列中挑出一个元素，作为"基准"(pivot).
+  //  把所有比基准值小的元素放在基准前面，所有比基准值大的元素放在基准的后面（相同的数可以到任一边），这个称为分区(partition)操作。
+//对每个分区递归地进行步骤1~2，递归的结束条件是序列的大小是0或1，这时整体已经被排好序了。
