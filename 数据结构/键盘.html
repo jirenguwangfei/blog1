@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>我的导航</title>
+</head>
+<body>
+<header></header>
+    <main id="mainXXX">
+    </main>
+    <main>
+        <div>
+            <kbd>1</kbd>
+            <kbd>2</kbd>
+            <kbd>3</kbd>
+            <kbd>4</kbd>
+            <kbd>5</kbd>
+            <kbd>6</kbd>
+            <kbd>7</kbd>
+            <kbd>8</kbd>
+            <kbd>9</kbd>
+        </div>
+        <div>
+            <kbd>q</kbd>
+            <kbd>w</kbd>
+            <kbd>e</kbd>
+            <kbd>r</kbd>
+            <kbd>t</kbd>
+            <kbd>y</kbd>
+            <kbd>u</kbd>
+            <kbd>i</kbd>
+            <kbd>o</kbd>
+            <kbd>p</kbd>
+        </div>
+        <div>
+            <kbd>a</kbd>
+            <kbd>s</kbd>
+            <kbd>d</kbd>
+            <kbd>f</kbd>
+            <kbd>g</kbd>
+            <kbd>h</kbd>
+            <kbd>j</kbd>
+            <kbd>k</kbd>
+            <kbd>l</kbd>
+        </div>
+        <div>
+            <kbd>z</kbd>
+            <kbd>x</kbd>
+            <kbd>c</kbd>
+            <kbd>v</kbd>
+            <kbd>b</kbd>
+            <kbd>n</kbd>
+            <kbd>m</kbd>
+        </div>
+    </main>
+    <footer></footer>
+    <script>
+        var keys = {
+            0: [0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p',length:10],
+            1: [0:'a',1:'s',2:'d':3:'f',4:'g',5:'h',6:'j',7:'k',8:'l',length:9],
+            2: [0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m',length:7],
+            length: 3
+        }
+        var hash = {
+            'q': 'qq.com',
+            'w': 'weibo.com',
+            'e': 'ele.me',
+            'r': 'renren,com',
+            't': 'tianya.com',
+            'y': 'youtube.com',
+            'u': 'uc.com',
+            'i': 'iqiyi.com',
+            'o': 'opera.com',
+            'p': 'undefined',
+            'a': 'acfun.tv',
+            's': 'sohu.com',
+            'z': 'zhihu.com',
+            'm': 'www.mcdonalds.com.cn'
+        }
+
+        index2 = 0
+        while (index< keys[length]) {
+            divXXX = document.createElement('div')
+            mainXXX.appendChild(divXXX)
+            kbdXXX = document.createElement('kbd')
+            kbdXXX.textContent = 'hi'
+            divXXX.appendChild(kbdXXX)
+            index = index + 1
+        }
+
+    </script>
+</body>
+</html>
