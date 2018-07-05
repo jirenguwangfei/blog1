@@ -3,23 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>我的导航</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header></header>
-    <main id="mainXXX">
+    <main>
+        <div class="wrapper" id="mainXXX"></div>
     </main>
     <main>
-        <div>
-            <kbd>1</kbd>
-            <kbd>2</kbd>
-            <kbd>3</kbd>
-            <kbd>4</kbd>
-            <kbd>5</kbd>
-            <kbd>6</kbd>
-            <kbd>7</kbd>
-            <kbd>8</kbd>
-            <kbd>9</kbd>
-        </div>
         <div>
             <kbd>q</kbd>
             <kbd>w</kbd>
@@ -56,9 +47,9 @@
     <footer></footer>
     <script>
         var keys = {
-            0: [0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p',length:10],
-            1: [0:'a',1:'s',2:'d':3:'f',4:'g',5:'h',6:'j',7:'k',8:'l',length:9],
-            2: [0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m',length:7],
+            0: ['q', 'w','e','r','t','y','u','i','o','p'],
+            1: ['a','s','d','f','g','h','j','k','l'],
+            2: ['z','x','c','v','b','n','m'],
             length: 3
         }
         var hash = {
@@ -78,16 +69,34 @@
             'm': 'www.mcdonalds.com.cn'
         }
 
+        //遍历keys，生成 kbd 标签
         index2 = 0
         while (index< keys[length]) {
             divXXX = document.createElement('div')
             mainXXX.appendChild(divXXX)
-            kbdXXX = document.createElement('kbd')
-            kbdXXX.textContent = 'hi'
-            divXXX.appendChild(kbdXXX)
+            row = keys[index]  //第一个数组 第二个数组 第三个数组
+            index2 = 0
+            while (index2 < row['length']) {   //0~9  0~8  0~6
+                kbdXXX = document.createElement('kbd')
+                kbdXXX.textContent = row[index2]
+                buttonX = document.createElement('button')
+                buttonX.textContent = '编辑'
+                buttonX.onclick = function(xzkjcnxlkxjlk){
+                    xzkjcnxlkxjlk.target
+                }
+                kbdXXX.appendChild(buttonX)
+                divXXX.appendChild(kbdXXX)
+                index2 = index2 + 1
+            }
             index = index + 1
         }
 
+        document.onkeypress = function (xzkjcnxlkxjlk) {
+            key = xzkjcnxlkxjlk['key']  //字符串q w e
+            website = hash[key]
+            // location.href = 'http://'+website
+            window.open('http://'+ website, '_black')
+        }
     </script>
 </body>
 </html>
