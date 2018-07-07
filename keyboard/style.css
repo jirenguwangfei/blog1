@@ -38,14 +38,33 @@ main{
 }
 .wrapper{
     background: rgba(255,255,255,0.2);
-    border-radius: 10px;
+    border-radius: 15px;
 }
-.key{width: 60px; height: 50px; background: linear-gradient(to bottom, #292929 0%,#111111 100%);
-    border: 1px solid #373737; color: #C5C5C5; border-radius: 6px;
+.key{width: 60px; height: 50px;
+    background: linear-gradient(to bottom, #292929 0%,#111111 100%);
+    border: 1px solid #373737;
+    color: #C5C5C5;
+    border-radius: 6px;
     box-shadow: 0 0 0 1px #1A1B1C, 0 0 0 2px #1F2020, 0 3px 0 2px #080808;
     position: relative;
-    font-size: 16px; font-family: Helvetica;}
-.row{margin: 20px; }
-.row .key{margin: 0 10px; }
-.key img{width: 16px; height: 16px; position: absolute; left: 4px; bottom: 2px;}
-.key .text{position: absolute; left: 4px; top: 2px; }
+    font-size: 16px;
+    font-family: Helvetica;
+}
+.row{
+    margin: 20px;
+}
+.row .key{
+    margin: 0 10px;
+}
+.key img{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    left: 4px;
+    bottom: 2px;
+}
+.key .text{
+    position: absolute;
+    left: 4px;
+    top: 2px;
+}
