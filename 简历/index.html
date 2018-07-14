@@ -73,7 +73,7 @@
     <div data-x id="siteAbout" class="userCard">
         <div class="pictureAndText clearfix">
             <div class="picture">
-                <img src="touxiang.jpg" width=299 height=347 alt="头像">
+                <img src="avatar.jpg" width=299 height=347 alt="头像">
             </div>
             <div class="text">
           <span class="welcome">Hello
@@ -123,7 +123,7 @@
     </p>
 
     <p class="selfIntroduction">
-        王飞， 资深前端工程师，资深前端讲师。
+        王飞， 前端工程师。
         <br> 技能：前端开发，Rails 开发，Node.js 开发
     </p>
 
@@ -181,7 +181,7 @@
         </li>
     </ol>
 </section>
-<section class="portfolio" id="siteWorks">
+<section data-x class="portfolio" id="siteWorks">
     <h2>作品集</h2>
     <nav>
         <ol class="clearfix">
@@ -208,52 +208,26 @@
 
     <div class="works" style="height: 597px;">
         <div class="big" style="top: 0; left: 0;">
-            <img src="键盘.png" alt="作品1">
+            <img src="1.jpg" alt="作品1">
         </div>
         <div class="small" style="top: 0; left: 645px;">
-            <img src="" alt="">
+            <img src="2.jpg" alt="作品2">
         </div>
         <div class="small" style="top: 312px; left: 645px;">
-            <img src="" alt="">
+            <img src="3.jpg" alt="作品3">
         </div>
     </div>
 
 </section>
+
 <script>
     setTimeout(function(){
         siteWelcome.classList.remove('active')
-    },1000)
-    window.onscroll = function(xxxxx){
-        if(window.scrollY > 0){
-            topNavBar.classList.add('sticky')
-        }else{
-            topNavBar.classList.remove('sticky')
-        }
-    }
-    let liTags = document.querySelectorAll('nav.menu > ul > li')
-    for(let i=0; i<liTags.length; i++){
-        liTags[i].onmouseenter = function(x){
-            x.currentTarget.classList.add('active')
-        }
-        liTags[i].onmouseleave = function(x){
-            x.currentTarget.classList.remove('active')
-        }
-    }
-    let aTags = document.querySelectorAll('nav.menu > ul > li > a')
-    for(let i=0; i<aTags.length; i++){
-        aTags[i].onclick = function(x){
-            x.preventDefault()
-            let a = x.currentTarget
-            let href = a.getAttribute('href') //'#siteAbout'
-            let element = document.querySelector(href)
-            let top = element.offsetTop
-            window.scrollTo(0, top - 80)
-        }
-    }
+    },3000)
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.1.1/Tween.min.js"></script>
 <script>
-    // 添加 offset 类
     let specialTags = document.querySelectorAll('[data-x]')
     for(let i =0;i<specialTags.length; i++){
         specialTags[i].classList.add('offset')
