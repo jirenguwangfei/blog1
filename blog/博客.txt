@@ -47,3 +47,5 @@
   字符串string
   声明一个String(*没有小写这种类型）
   var s = new String()
+
+8.数组与a.forEach
