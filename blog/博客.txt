@@ -48,4 +48,75 @@
   声明一个String(*没有小写这种类型）
   var s = new String()
 
-8.数组与a.forEach
+8.共用属性--proto--
+    公用属性( to String, value of )里含有
+    String.prototype; Array.prototype; Function.prototype
+    String.prototype( .trim() .split() )     *字符串类型
+    Array.prototype( .push() .pop() .shift() .join() ) *数组类型
+    Function.prototype( .call() .bind() .apply() )
+
+9.数组与对象的区别
+    数组的--proto--要指向共用对象Array.prototype，再指向Object.prototype
+    而对象._proto_ ===函数.prototype
+
+10.arguments伪数组
+    function f(){
+        console.dir(arguments)
+    }
+    f(1,2,3) ->
+    0:1
+    1:2
+    2:3
+    length:3
+
+11.forEach() 方法对数组的每个元素执行一次提供的函数。
+    var array1 = ['a', 'b', 'c'];
+
+    array1.forEach(function(element) {
+      console.log(element);
+    });
+
+    // expected output: "a"
+    // expected output: "b"
+    // expected output: "c"
+
+  * array.forEach(callback(currentValue, index, array){
+        //do something
+    }, this)
+
+    array.forEach(callback[, thisArg])
+    //callback
+    //为数组中每个元素执行的函数，该函数接收三个参数：
+    //currentValue(当前值)
+    //数组中正在处理的当前元素。
+    //index(索引)
+    //数组中正在处理的当前元素的索引。
+    //array
+    //forEach()方法正在操作的数组。
+    //thisArg
+    //可选参数。当执行回调 函数时用作this的值(参考对象)。
+
+12.
+  ->function forEach(array,x){
+        for(let i=0; i<array.length; i++){
+            x(array[i], i)
+        }
+    }
+<-  undefined
+
+> forEach(['a', 'b', 'c'], function(value, key){
+        console.log(value, key)
+  })
+    a 0
+    b 1
+    c 2
+<-  undefined
+
+> var a = ['a', 'b', 'c'];
+        a.forEach(function(value, key){
+        console.log(value, key)
+  }
+    a 0
+    b 1
+    c 2
+<-  undefined
