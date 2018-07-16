@@ -120,3 +120,39 @@
     b 1
     c 2
 <-  undefined
+
+13.join
+    a = [1, 2, 3]
+    a.join(',')
+ <- "1, 2, 3"
+
+14.concat(联结合并多个字符串)
+    var a = [1,2,3]
+    var b = [4,5,6]
+    a.concat (b)
+ <- [1,2,3,4,5,6]
+
+    var a = [1,2,3]
+    var b = a.concat([])
+    得到b = [1,2,3]
+    *此处a === b 为false
+
+15.map功能与forEach功能相同，但是具有返回值
+    a = [1,2,3]
+    a.forEach(function(){})
+<-  undefined
+
+    a.map(function(value, key)){
+        return value *2
+    }
+<-  [2,4,6]
+
+16.reduce求和
+    a = [1,2,3,4,5,6,7,8,9]
+    a.reduce(function(sum, n){
+        return sum + n
+    }, 0)
+<-  45
+    或者
+    a.reduce((sum, n)=> sum + n ,0)
+<-  45
