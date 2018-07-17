@@ -1,0 +1,32 @@
+一.函数的五种声明方式
+1.具名函数
+    function x (输入1，输入2) {
+        return undefined
+    }
+
+2.匿名函数
+    var a = xxx
+    a = function (input1, input2){ return }
+
+3.把有名字的函数给个变量
+    var x = function y (input1, input2)
+    (左边是个变量，右边是个具名函数 )
+    console.log(y)
+ <- undefined
+
+4.*f = new Function( 'x', 'y', 'return x+' + n + 'y')
+
+5.箭头函数 （x, y）=> {return x + y}
+    例如：sum = (x, y) => {return x + y}
+          (sum = (x, y) => x +y 单句可以省略return和花括号)
+          参数只有一个时，可以省略左边的括号
+
+二。函数的本质
+1.函数是一段可以反复调用的代码块。函数还能接受输入的参数，不同的参数会返回不同的值。
+    例如：
+    function 求三角形面积 (width, height) {
+        var n = width * height
+        var m = n / 2
+        return m
+    }
+
