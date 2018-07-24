@@ -1,75 +1,113 @@
-let $buttons = $('#buttonWrapper>button')
-let $slides = $('#slides')
-let $images = $slides.children('img')
-let current = 0
-
-makeFakeSlides()
-$slides.css({transform:'translateX(-400px)'})
-bindEvents()
-$(next).on('click', function(){
-  goToSlide(current+1)
-})
-$(previous).on('click', function(){
-  goToSlide(current-1)
-})
-
-let timer = setInterval(function(){
-  goToSlide(current+1)
-},2000)
-$('.container').on('mouseenter', function(){
-  window.clearInterval(timer)
-}).on('mouseleave', function(){
-  timer = setInterval(function(){
-    goToSlide(current+1)
-  },2000)
-})
-
-function bindEvents(){
-  $('#buttonWrapper').on('click', 'button', function(e){
-    let $button = $(e.currentTarget)
-    let index = $button.index()
-    goToSlide(index)
-  })
+function Carousel($ct) {
+    this.$ct = $ct
+    this.$pre = this.$ct.find(".pre");
+    this.$next = this.$ct.find(".next");
+    this.$imgWidth = this.$ct.find(".imgWrap img").width();
+    this.imgs = this.$ct.find(".imgWrap img");
+    this.$imgWrap = this.$ct.find(".imgWrap");
+    this.$count = this.$ct.find(".imgWrap img").length;
+    this.pageIndex = 0;
+    this.$pages = this.$ct.find(".pages span")
+    this.isAnimate = false;
+    this.init()
+    this.timerId
 }
 
-//重要
-function goToSlide(index){
-  if(index > $buttons.length-1){
-    index = 0
-  }else if(index <0){
-    index = $buttons.length - 1
-  }
-  console.log('current', 'index')
-  console.log(current, index)
-  if(current === $buttons.length -1 && index === 0){
-    // 最后一张到第一张
-    console.log('here')
-    $slides.css({transform:`translateX(${-($buttons.length + 1) * 400}px)`})
-      .one('transitionend', function(){
-        $slides.hide()
-        $slides.offset() // .offset() 可以触发 re-layout，这是一个高级技术，删掉这行你就会发现 bug，所以只能加上这一行。
-        // 不要写邮件来问我为什么要写 .offset，你自己注释掉上面一行看最后一张到第一张的动画，就知道为什么要加 offset() 了。
-        $slides.css({transform:`translateX(${-(index+1)*400}px)`}).show()
-      })
 
-  }else if(current === 0 && index === $buttons.length - 1){
-    // 第一张到最后一张
-    $slides.css({transform:`translateX(0px)`})
-      .one('transitionend', function(){
-        $slides.hide().offset()
-        $slides.css({transform:`translateX(${-(index+1)*400}px)`}).show()
-      })
-
-  }else{
-    $slides.css({transform:`translateX(${- (index+1) * 400}px)`})
-  }
-  current = index
+Carousel.prototype.init = function() {
+    let _this = this
+    this.$imgWrap.append(this.imgs.first().clone())
+    this.$imgWrap.prepend(this.imgs.last().clone())
+    this.$imgWrap.css({
+        left: -this.$imgWidth
+    })
+    this.$imgWrap.width(this.$imgWidth * (this.$count + 2));
+    this.$pre.click(function(event) {
+        console.log(1)
+        _this.playPrePage(1);
+    });
+    this.$next.click(function(event) {
+        console.log(2)
+        _this.playNextPage(1)
+    });
+    this.$pages.click(function(event) {
+        console.log(3)
+        var $index = $(this).index();
+        if (_this.pageIndex > $index) {
+            _this.playPrePage(_this.pageIndex - $index)
+        } else if (_this.pageIndex < $index) {
+            _this.playNextPage($index - _this.pageIndex)
+        }
+    });
+    this.start()
+    this.pause()
+};
+Carousel.prototype.playPrePage = function(num) {
+    console.log("num", num)
+    let _this = this
+    if (this.isAnimate) return;
+    this.isAnimate = true;
+    this.$imgWrap.animate({
+            left: "+=" + _this.$imgWidth * num
+        },
+        500,
+        function() {
+            _this.pageIndex -= num;
+            if (_this.pageIndex < 0) {
+                _this.pageIndex = _this.$count - 1;
+                _this.$imgWrap.css({
+                    left: -_this.$imgWidth * (_this.$count)
+                })
+            }
+            _this.setPagesActive(_this.pageIndex)
+            _this.isAnimate = false;
+        });
+};
+Carousel.prototype.playNextPage = function(num) {
+    let _this = this
+    if (_this.isAnimate) return;
+    _this.isAnimate = true;
+    _this.$imgWrap.animate({
+            left: "-=" + _this.$imgWidth * num
+        },
+        500,
+        function() {
+            _this.pageIndex += num;
+            if (_this.pageIndex > _this.$count - 1) {
+                _this.pageIndex = 0;
+                _this.$imgWrap.css({
+                    left: -_this.$imgWidth
+                })
+            }
+            _this.setPagesActive(_this.pageIndex)
+            _this.isAnimate = false;
+        });
+};
+Carousel.prototype.setPagesActive = function(num) {
+    this.$pages.removeClass('active')
+        .eq(num).addClass('active');
+};
+Carousel.prototype.start = function(){
+    this.timerId = window.setInterval(() => {
+        console.log(this.pageIndex)
+        let n = 1
+        this.playNextPage(n)
+        n += 1
+    }, 1000)
+}
+Carousel.prototype.pause = function(){
+    this.$ct.on("mouseenter",(e)=>{
+        console.log(this.timerId)
+        window.clearInterval(this.timerId)
+    })
+    this.$ct.on("mouseleave",(e)=>{
+        this.start()
+    })
 }
 
-function makeFakeSlides(){
-  let $firstCopy = $images.eq(0).clone(true)
-  let $lastCopy = $images.eq($images.length-1).clone(true)
+! function() {
+    let $ct = $(".carousel")
+    let carousel = new Carousel($ct)
 
-  $slides.append($firstCopy)
-  $slides.prepend($lastCopy)
-}
+}()
+
