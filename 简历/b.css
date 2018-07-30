@@ -144,8 +144,10 @@ section.portfolio .works > .big, section.portfolio .works > .small { position: a
 
 .carousel {
     position: relative;
-    width: 300px;
     margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .viewport {

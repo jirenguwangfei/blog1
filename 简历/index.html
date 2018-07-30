@@ -216,7 +216,7 @@
     for(let i =0;i<specialTags.length; i++){
         specialTags[i].classList.add('offset')
     }
-    findClosest()
+     findClosest()
     window.onscroll = function(x){
         if(window.scrollY > 0){
             topNavBar.classList.add('sticky')
@@ -258,6 +258,7 @@
         requestAnimationFrame(animate);
         TWEEN.update(time);
     }
+
     requestAnimationFrame(animate);
     for(let i=0; i<aTags.length; i++){
         aTags[i].onclick = function(x){
