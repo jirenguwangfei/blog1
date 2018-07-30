@@ -1,0 +1,105 @@
+
+ 需求：点击按钮付款一块钱
+ <h5>你的账户余额是<span id="amount">&&&amount&&&</span></h5>
+ <button id="button">付款</button>
+
+ 局部刷新怎么做？
+ 方案一：用图片造 get 请求
+button.addEventListener('click', (e)=>{
+    let image = document.createElement('img')
+    image.src = '/pay'
+    image.onload = function(){ // 状态码是 200~299 则表示成功
+        alert('成功')
+    }
+    image.onload = function(){ // 状态码大于等于 400 则表示失败
+        alert('失败')
+    }
+})
+ 这种方法只能知道成功或失败，不能知道更多的数据
+
+
+ 方案二：用 script 造 get 请求
+button.addEventListener('click', (e)=>{
+    let script = document.createElement('script')
+    script.src = '/pay'
+    document.body.appendChild(script)
+    script.onload = function(e){ // 状态码是 200~299 则表示成功
+        e.currentTarget.remove()
+    }
+    script.onload = function(e){ // 状态码大于等于 400 则表示失败
+        e.currentTarget.remove()
+    }
+})
+ 后端代码
+if (path === '/pay'){
+    let amount = fs.readFileSync('./db', 'utf8')
+    amount -= 1
+    fs.writeFileSync('./db', amount)
+    response.setHeader('Content-Type', 'application/javascript')
+    response.write('amount.innerText = ' + amount)
+    response.end()
+}
+
+ 这种技术叫做 SRJ - Server Rendered JavaScript
+
+ 方案三：JSONP.js
+button.addEventListener('click', (e)=>{
+    let script = document.createElement('script')
+    let functionName = 'frank'+ parseInt(Math.random()*10000000 ,10)
+    window[functionName] = function(){  // 每次请求之前搞出一个随机的函数
+        amount.innerText = amount.innerText - 0 - 1
+    }
+    script.src = '/pay?callback=' + functionName
+    document.body.appendChild(script)
+    script.onload = function(e){ // 状态码是 200~299 则表示成功
+        e.currentTarget.remove()
+        delete window[functionName] // 请求完了就干掉这个随机函数
+    }
+    script.onload = function(e){ // 状态码大于等于 400 则表示失败
+        e.currentTarget.remove()
+        delete window[functionName] // 请求完了就干掉这个随机函数
+    }
+})
+//后端代码
+if (path === '/pay'){
+    let amount = fs.readFileSync('./db', 'utf8')
+    amount -= 1
+    fs.writeFileSync('./db', amount)
+    let callbackName = query.callback
+    response.setHeader('Content-Type', 'application/javascript')
+    response.write(`
+        ${callbackName}.call(undefined, 'success')
+    `)
+    response.end()
+}
+
+什么是JSONP？
+请求方：frank.com 的前端程序员（浏览器）
+响应方：jack.com 的后端程序员（服务器）
+
+请求方创建 script，src 指向响应方，同时传一个查询参数 ?callbackName=yyy
+响应方根据查询参数callbackName，构造形如
+yyy.call(undefined, '你要的数据')
+yyy('你要的数据')
+
+ 1.请求方创建script， src 指向响应方；
+ 2.响应方根据查询参数 callbackName， 构造形如 xxx.call(undefined, '你要的数据' ) 这样的响应。
+这就是JSONP
+约定：
+
+callbackName -> callback
+yyy -> 随机数 frank12312312312321325()
+
+ ***JSONP为什么不支持POST请求
+ ***因为JSONP是通过动态创建script实现的，动态创建script的时候只能用GET请求，没有办法用POST请求
+
+jQuery的写法
+$.ajax({
+     url: "http://jack.com:8002/pay",
+     dataType: "jsonp",
+     success: function( response ) {
+         if(response === 'success'){
+             amount.innerText = amount.innerText - 1
+         }
+     }
+ })

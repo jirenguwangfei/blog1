@@ -1,0 +1,78 @@
+.carousel {
+  position: relative;
+  width: 300px;
+}
+
+.viewport {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.viewport .imgWrap {
+  position: absolute;
+  display: flex;
+  align-content: flex-start;
+}
+
+.viewport .imgWrap img {
+  height: 200px;
+  width: 300px;
+}
+
+.viewport .pages {
+  position: absolute;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.viewport .pages span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.viewport .btn {
+  display: block;
+  position: absolute;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
+  cursor: pointer;
+  top: 50%;
+  margin-top: -15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.viewport .btn:hover {
+  opacity: 0.4;
+}
+
+.viewport .pre {
+  left: 1%;
+}
+
+.viewport .next {
+  right: 1%;
+}
+
+.viewport .pages span.active {
+  background: rgba(0, 0, 0, 0.3);
+}
+

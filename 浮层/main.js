@@ -4,6 +4,6 @@ $(clickMe).on('click', function () {
         $(popover).hide()
     })
 })
-$(wrapper).on('click', function () {
+$(wrapper).on('click', function (e) {
     e.stopPropagation()
 })

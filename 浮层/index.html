@@ -4,7 +4,42 @@
     <meta charset="UTF-8">
     <title>浮层</title>
     <script src="jquery-3.2.1.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        .wrapper{
+            position: relative;
+            display: inline-block;
+        }
+
+        .popover{
+            border: 1px solid red;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            white-space: nowrap;
+            padding: 10px;
+            margin-left: 10px;
+            background: white;
+        }
+
+        .popover::before{
+            position: absolute;
+            right: 100%;
+            top: 0;
+            border: 10px solid transparent;
+            border-right-color: red;
+            content: '';
+        }
+
+        .popover::after{
+            position: absolute;
+            right: 100%;
+            top: 0;
+            border: 10px solid transparent;
+            border-right-color: white;
+            content: '';
+            margin-right: -1px;
+        }
+    </style>
 </head>
 <body>
     <div id="wrapper" class="wrapper">
@@ -13,6 +48,25 @@
             <input type="checkbox">浮层
         </div>
     </div>
-    <script src="main.js"></script>
+    <script>
+        $(clickMe).on('click', function () {
+            $(popover).show()
+            $(document).one('click', function () {
+                $(popover).hide()
+            })
+        })
+        $(wrapper).on('click', function (e) {
+            e.stopPropagation()
+        })
+    </script>
+    <script>
+        popover.onclick = function () {
+            if (popover.style.display === 'block'){
+                popover.style.display = 'none'
+            }else{
+                popover.style.display = 'block'
+            }
+        }
+    </script>
 </body>
 </html>
