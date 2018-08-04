@@ -12,6 +12,7 @@
     padding: 10px;
     margin-left: 10px;
     background: white;
+    display: none;
 }
 
 .popover::before{
