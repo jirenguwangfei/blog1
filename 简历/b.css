@@ -6,6 +6,17 @@ ul, ol { list-style: none; }
 h1,h2,h3,h4,h5,h6{ font-weight: normal; }
 .clearfix::after { content: ''; display: block; clear: both; }
 
+.loading{ width: 200px; height: 200px; position: relative; }
+.loading::before,.loading::after{ content: ''; position: absolute; width: 0px; height: 0px; background: black; border-radius: 50%; top: 0; left: 0; bottom: 0; right: 0; margin: auto; animation: s 1.5s linear infinite; }
+.loading::after{ animation-delay: 0.75s; }
+@keyframes s{
+    0%{ width: 0px; height: 0px; opacity: 1; }
+    100%{ width: 100px; height: 100px; opacity: 0; }
+}
+.icon { width: 1em; height: 1em; vertical-align: -0.15em; fill: currentColor; overflow: hidden; }
+.site-welcome{ display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #888; z-index: 1; justify-content: center; align-items: center; }
+.site-welcome.active{ display: flex; }
+
 [data-x].active{
     outline: 10px solid red;
 }
@@ -143,96 +154,21 @@ section.portfolio > nav .bar.state-3 .bar-inner{ margin-left: 140px; width: 96px
 section.portfolio .works{ position: relative; }
 section.portfolio .works > .big, section.portfolio .works > .small { position: absolute; }
 
-.carousel {
-    position: relative;
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+.carousel {position: relative;margin-top: 20px;display: flex;align-items: center;justify-content: center;}
 
-.viewport {
-    position: relative;
-    width: 600px;
-    height: 400px;
-    overflow: hidden;
-    border-radius: 4px;
-    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.3);
-}
+.viewport {position: relative;width: 750px;height: 500px;overflow: hidden;border-radius: 4px;box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.3);}
+.viewport .imgWrap {position: absolute;display: flex;align-content: flex-start;justify-content: center;}
+.viewport .imgWrap img {height: 500px;width: 750px;}
+.viewport .pages {position: absolute;bottom: 0;display: block;width: 100%;text-align: center;}
+.viewport .pages span {display: inline-block;width: 10px;height: 10px;border: 1px solid rgba(0, 0, 0, 0.3);border-radius: 50%;margin-right: 10px;cursor: pointer;}
+.viewport .btn {display: block;position: absolute;border: 2px solid rgba(0, 0, 0, 0.3);width: 40px;height: 40px;border-radius: 50%;
+    text-align: center;line-height: 30px;color: #fff;cursor: pointer;top: 50%;margin-top: -15px;-webkit-user-select: none;-moz-user-select: none;
+    -ms-user-select: none;user-select: none;}
+.viewport .btn:hover {opacity: 0.4;}
+.viewport .pre {left: 1%;}
+.viewport .next {right: 1%;}
+.viewport .pages span.active {background: rgba(0, 0, 0, 0.3);}
 
-.viewport .imgWrap {
-    position: absolute;
-    display: flex;
-    align-content: flex-start;
-    justify-content: center;
-}
-
-.viewport .imgWrap img {
-    height: 400px;
-    width: 600px;
-}
-
-.viewport .pages {
-    position: absolute;
-    bottom: 0;
-    display: block;
-    width: 100%;
-    text-align: center;
-}
-
-.viewport .pages span {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 50%;
-    margin-right: 10px;
-    cursor: pointer;
-}
-
-.viewport .btn {
-    display: block;
-    position: absolute;
-    border: 2px solid rgba(0, 0, 0, 0.3);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 30px;
-    color: #fff;
-    cursor: pointer;
-    top: 50%;
-    margin-top: -15px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.viewport .btn:hover {
-    opacity: 0.4;
-}
-
-.viewport .pre {
-    left: 1%;
-}
-
-.viewport .next {
-    right: 1%;
-}
-
-.viewport .pages span.active {
-    background: rgba(0, 0, 0, 0.3);
-}
-
-
-
-section.message > ol{
-    max-width: 700px;
-    margin: 0 auto;
-    border-top: 1px solid #DDD;
-}
-section.message > ol > li {
-    padding: 16px;
-    border-bottom: 1px solid #DDD;
-}
+section.message {    text-align: center;}
+section.message > ol{max-width: 700px;margin: 0 auto;border-top: 1px solid #DDD;}
+section.message > ol > li {padding: 16px;border-bottom: 1px solid #DDD;}
