@@ -180,7 +180,7 @@
   border-radius: 50px;
 }
 /*
- * 好了，这只皮卡丘送给你
+ * 好了，一只皮卡丘完成了
  */
 `
     writeCode('',code)
