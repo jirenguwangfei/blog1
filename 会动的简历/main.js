@@ -11,7 +11,7 @@ function writeCss(prefix, code, fn){
             window.clearInterval(id);
             fn && fn.call()
         }
-    }, 70)
+    }, 20)
 }
 function writeMarkdown(markdown, fn){
     let domPaper = document.querySelector('#paper>.content');
@@ -24,7 +24,7 @@ function writeMarkdown(markdown, fn){
             window.clearInterval(id);
             fn && fn.call()
         }
-    }, 35)
+    }, 20)
 }
 
 var css1 = `/* 
