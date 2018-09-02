@@ -120,7 +120,22 @@ Vue的生命周期钩子与之类似，比较常用的有：
 
 6.1 v-bind
 
-v-bind的基本用途是动态更新HTML元素上的属性，比如id、class等。
+v-bind的基本用途是动态更新HTML元素上的属性，比如id、class等。例如：
+
+    <div id='app'>
+        <a :href="url">链接</a>
+        <img :src="imgUrl">
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                url: 'http://xxxxxxxx.com',
+                imgUrl: 'http://xxxxxxxx/img.png'
+            }
+        })
+    </script>
+实例中的链接地址与图片的链接地址都与数据进行了绑定，当通过各种方式改变数据时，链接和图片都会自动更新。
 
 6.2 v-on
 
