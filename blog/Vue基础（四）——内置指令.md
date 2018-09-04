@@ -377,8 +377,7 @@ Vue支持以下修饰符：
 
 .once
 
-.passive
-
+.passive0
 
     <!-- 阻止单击事件继续传播 -->
     <a v-on:click.stop="doThis"></a>
