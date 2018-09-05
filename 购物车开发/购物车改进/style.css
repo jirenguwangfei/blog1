@@ -1,0 +1,13 @@
+[v-cloak]{
+    display:none;
+}
+body{background-color: #eee;}
+table thead tr th{
+    border:1px solid #333;width: 100px;
+}
+table tbody tr td{
+    border:1px solid red;width:100px;
+}
+table{
+    text-align: center;
+}
