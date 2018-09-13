@@ -4,6 +4,7 @@
   "description": "this is my first commit this is my second commit",
   "main": "jquery-3.2.1.min.js",
   "dependencies": {
+    "leancloud-storage": "^3.10.0",
     "webpack": "^4.17.2"
   },
   "devDependencies": {},
