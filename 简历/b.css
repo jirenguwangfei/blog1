@@ -172,3 +172,10 @@ section.portfolio .works > .big, section.portfolio .works > .small { position: a
 
 section.message > ol{max-width: 700px;margin: 0 auto;border-top: 1px solid #DDD;}
 section.message > ol > li {padding: 16px;border-bottom: 1px solid #DDD;}
+
+.works{margin: 10px;}
+.works > ol{
+    display: flex;
+    flex-wrap: wrap;
+}
+.works > ol >li { width: 50% }
